@@ -19,6 +19,7 @@ public class CountryCrudApplication {
 		SpringApplication.run(CountryCrudApplication.class, args);
 	}
 
+//	frontend header configuration
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();

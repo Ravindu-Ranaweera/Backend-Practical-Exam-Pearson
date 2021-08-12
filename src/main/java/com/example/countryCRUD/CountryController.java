@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/rest/v2")
 public class CountryController {
 
     private  final CountryService countryService;
@@ -39,14 +39,14 @@ public class CountryController {
 
     @PutMapping ("/update/{id}")
     public ResponseEntity<?> updateCountry(@RequestBody Country country, @PathVariable("id") Long id){
-        System.out.println(id);
+//        System.out.println(id);
         Integer updateCountry = countryService.updateCountry(country, id);
         return new ResponseEntity<>(updateCountry, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCountry(@PathVariable("id") Long id){
-        System.out.println("Success");
+//        System.out.println("Success");
         Integer deleteCountry = countryService.deleteCountry(id);
         return new ResponseEntity<>(deleteCountry, HttpStatus.OK);
     }
