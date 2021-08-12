@@ -20,7 +20,7 @@ public class CountryController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Country>> getAllCountry (){
-        System.out.println("gdgsgsd");
+//        System.out.println("Success");
         List<Country> countries = countryService.findAllCountry();
         return new ResponseEntity<>(countries, HttpStatus.OK);
     }
@@ -37,21 +37,18 @@ public class CountryController {
         return new ResponseEntity<>(newCountry, HttpStatus.CREATED);
     }
 
-    @PutMapping ("/update")
-    public ResponseEntity<Country> updateCountry(@RequestBody Country country){
-        Country updateCountry = countryService.updateCountry(country);
+    @PutMapping ("/update/{id}")
+    public ResponseEntity<?> updateCountry(@RequestBody Country country, @PathVariable("id") Long id){
+        System.out.println(id);
+        Integer updateCountry = countryService.updateCountry(country, id);
         return new ResponseEntity<>(updateCountry, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCountry(@PathVariable("id") Long id){
-        countryService.deleteCountry(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        System.out.println("Success");
+        Integer deleteCountry = countryService.deleteCountry(id);
+        return new ResponseEntity<>(deleteCountry, HttpStatus.OK);
     }
-
-
-
-
-
 
 }

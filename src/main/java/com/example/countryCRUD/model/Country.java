@@ -1,8 +1,11 @@
 package com.example.countryCRUD.model;
 
+
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Embeddable
 @Entity
 public class Country implements Serializable {
     @Id

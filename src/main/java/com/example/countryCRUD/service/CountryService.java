@@ -4,7 +4,10 @@ import com.example.countryCRUD.exception.UserNotFoundException;
 import com.example.countryCRUD.model.Country;
 import com.example.countryCRUD.repo.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,11 +33,12 @@ public class CountryService {
         return countryRepository.findCountryById(id).orElseThrow(()-> new UserNotFoundException("User not found"));
     }
 
-    public Country updateCountry(Country country){
-        return countryRepository.save(country);
+    public int updateCountry(Country country, Long id) {
+        String countryName = country.getName();
+        return countryRepository.updateById(countryName,id);
     }
 
-    public void deleteCountry(Long id){
-        countryRepository.deleteCountryById(id);
+    public int deleteCountry(Long id){
+        return countryRepository.deleteCountryById(id);
     }
 }
